@@ -1,0 +1,23 @@
+<!doctype html><html><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ReadQuest – PDF</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.js"></script>
+<style>html,body,#c{height:100%;margin:0} #c{overflow:auto;background:#eee}</style>
+</head><body>
+<div id="c"><canvas id="cv"></canvas></div>
+<script>
+  const p = new URLSearchParams(location.search);
+  const url = p.get("file");
+  const pageNum = parseInt(p.get("page")||"1",10);
+  let pdf;
+  pdfjsLib.getDocument(url).promise.then(doc=>{ pdf=doc; render(pageNum); });
+  function render(n){
+    pdf.getPage(n).then(page=>{
+      const vp = page.getViewport({scale:1.5});
+      const cv = document.getElementById('cv'), ctx=cv.getContext('2d');
+      cv.width = vp.width; cv.height = vp.height;
+      page.render({canvasContext:ctx, viewport:vp});
+    });
+  }
+</script>
+</body></html>
