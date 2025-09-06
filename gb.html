@@ -1,0 +1,15 @@
+<!doctype html><html><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ReadQuest – Google Books</title>
+<script src="https://www.google.com/books/jsapi.js"></script>
+<style>html,body,#viewer{height:100%;margin:0}</style>
+</head><body>
+<div id="viewer"></div>
+<script>
+  const p = new URLSearchParams(location.search);
+  const id = p.get('id');
+  google.books.load();
+  function init(){ new google.books.DefaultViewer(document.getElementById('viewer')).load(id); }
+  google.books.setOnLoadCallback(init);
+</script>
+</body></html>
