@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ReadQuest</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="topbar">
+    <h1>ReadQuest</h1>
+    <nav class="tabs">
+      <button data-page="dashboard" class="active">Dashboard</button>
+      <button data-page="library">Library</button>
+      <button data-page="quizzes">Quizzes</button>
+      <button data-page="achievements">Achievements</button>
+      <button data-page="leaderboard">Leaderboard</button>
+      <button data-page="friends">Friends</button>
+    </nav>
+  </header>
+
+  <main id="page-dashboard" class="page show">
+    <h2>Your Stats</h2>
+    <div class="cards">
+      <div class="card"><div>Streak</div><b id="stat-streak">0</b> days</div>
+      <div class="card"><div>XP</div><b id="stat-xp">0</b></div>
+      <div class="card"><div>Weekly Minutes</div><b id="stat-weekly">0</b></div>
+      <div class="card"><div>Quiz Accuracy</div><b id="stat-acc">0%</b></div>
+    </div>
+    <div class="empty" id="dash-empty">Start reading to see stats.</div>
+  </main>
+
+  <main id="page-library" class="page">
+    <h2>Library</h2>
+    <div class="search">
+      <input id="searchInput" placeholder="Search by title, author, or ISBN"/>
+      <button id="searchBtn">Search</button>
+    </div>
+    <div id="searchResults" class="grid"></div>
+    <h3>My Books</h3>
+    <div id="myLibrary" class="grid"></div>
+  </main>
+
+  <main id="page-quizzes" class="page">
+    <h2>Quizzes</h2>
+    <div id="quizList" class="list"></div>
+  </main>
+
+  <main id="page-achievements" class="page">
+    <h2>Achievements</h2>
+    <ul class="list" id="achList"></ul>
+  </main>
+
+  <main id="page-leaderboard" class="page">
+    <h2>Leaderboard</h2>
+    <div id="lbGlobal" class="list"></div>
+  </main>
+
+  <main id="page-friends" class="page">
+    <h2>Friends</h2>
+    <div id="friendsList" class="list"></div>
+  </main>
+
+  <!-- Reader modal -->
+  <div id="readerModal" class="modal">
+    <div class="modal-body">
+      <div class="modal-top">
+        <button id="startSessionBtn">Start Session</button>
+        <button id="endSessionBtn" disabled>End Session</button>
+        <button id="closeReader">Close</button>
+      </div>
+      <iframe id="readerFrame" title="Reader"></iframe>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
