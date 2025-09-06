@@ -1,5 +1,7 @@
 // --- Config ---
-const BASE_URL = ""; // after deploy on Vercel, set to 'https://YOUR-APP.vercel.app'
+// --- Config ---
+const BASE_URL = "https://readquest-zeta.vercel.app"; // <-- your Vercel URL
+
 
 // --- State (localStorage for now; you can swap to DB later) ---
 let state = {
