@@ -32,13 +32,17 @@
 
   <main id="page-library" class="page">
     <h2>Library</h2>
-    <div class="search">
-      <input id="searchInput" placeholder="Search by title, author, or ISBN"/>
-      <button id="searchBtn">Search</button>
-    </div>
-    <div id="searchResults" class="grid"></div>
-    <h3>My Books</h3>
-    <div id="myLibrary" class="grid"></div>
+
+<div class="search-row">
+  <input id="search" placeholder="Search books, title or ISBN" />
+  <button id="searchBtn">Search</button>
+</div>
+
+<!-- Where search results will render -->
+<div id="results" style="margin-top:12px;"></div>
+
+<h3>My Books</h3>
+<div id="mybooks"></div>
   </main>
 
   <main id="page-quizzes" class="page">
