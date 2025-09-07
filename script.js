@@ -61,12 +61,67 @@ function renderDashboard(){
 
 // --- Library (search + my books) ---
 const searchInput = document.getElementById("searchInput");
-document.getElementById("searchBtn").onclick = async () => {
-  const q = searchInput.value.trim();
-  if (!q) return;
-  const results = await searchBooks(q);
-  renderResults(results);
-};
+document.addEventListener('DOMContentLoaded', () => {
+  const qInput   = document.getElementById('search');     // <input id="search" />
+  const qBtn     = document.getElementById('searchBtn');  // <button id="searchBtn">Search</button>
+  const results  = document.getElementById('results');    // <div id="results"></div>
+  const mybooks  = document.getElementById('mybooks');    // <div id="mybooks"></div>
+
+  // Initial render of "My Books"
+  renderMyBooks();
+
+  qBtn?.addEventListener('click', async () => {
+    const q = (qInput?.value || '').trim();
+    if (!q) return;
+
+    results.innerHTML = 'Searching…';
+    try {
+      const r = await fetch(`${BASE_URL}/api/search?q=${encodeURIComponent(q)}`);
+      const { results: items = [] } = await r.json();
+      if (!items.length) {
+        results.innerHTML = '<em>No results.</em>';
+        return;
+      }
+      results.innerHTML = items.map(renderResultCard).join('');
+    } catch (e) {
+      console.error(e);
+      results.innerHTML = '<span style="color:#c00">Error fetching results.</span>';
+    }
+  });
+
+  function renderResultCard(b) {
+    const authors = Array.isArray(b.authors) ? b.authors.join(', ') : (b.authors || '');
+    return `
+      <div class="result" style="display:flex;gap:12px;align-items:flex-start;margin:8px 0;">
+        ${b.thumbnail ? `<img src="${b.thumbnail}" alt="${b.title}" width="60" height="90" style="object-fit:cover;border:1px solid #ddd;border-radius:4px;">` : ''}
+        <div class="meta" style="flex:1">
+          <div class="title"><strong>${b.title}</strong></div>
+          <div class="authors" style="color:#555;font-size:0.9em">${authors}</div>
+          <div style="margin-top:6px;display:flex;gap:8px;">
+            <button onclick='addToLibrary(${JSON.stringify(b).replace(/'/g, "&apos;")})'>Add</button>
+            ${b.previewLink ? `<a href="${b.previewLink}" target="_blank">Open</a>` : ''}
+          </div>
+        </div>
+      </div>`;
+  }
+
+  // Expose addToLibrary so inline onclick can call it
+  window.addToLibrary = (b) => {
+    // Keep unique by id
+    if (!state.books.find(x => x.id === b.id)) {
+      state.books.push(b);
+      save();
+      renderMyBooks();
+    }
+  };
+
+  function renderMyBooks() {
+    mybooks.innerHTML =
+      state.books.length
+        ? state.books.map(b => `<div style="margin:6px 0">${b.title}</div>`).join('')
+        : '<em>No books yet.</em>';
+  }
+});
 
 async function searchBooks(query){
   // TODO: after deploy, set BASE_URL and this will call /api/search
