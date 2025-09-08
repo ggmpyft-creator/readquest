@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <base href="/readquest/">
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ReadQuest</title>
-  <link rel="stylesheet" href="style.css"/>
+  <!-- base ensures all relative paths (script.js, style.css) resolve from /readquest/ -->
+  <base href="/readquest/" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="topbar">
@@ -20,6 +21,7 @@
     </nav>
   </header>
 
+  <!-- Dashboard page -->
   <main id="page-dashboard" class="page show">
     <h2>Your Stats</h2>
     <div class="cards">
@@ -31,36 +33,37 @@
     <div class="empty" id="dash-empty">Start reading to see stats.</div>
   </main>
 
+  <!-- Library page -->
   <main id="page-library" class="page">
     <h2>Library</h2>
-
-<div class="search-row">
-  <input id="search" placeholder="Search books, title or ISBN" />
-  <button id="searchBtn">Search</button>
-</div>
-
-<!-- Where search results will render -->
-<div id="results" style="margin-top:12px;"></div>
-
-<h3>My Books</h3>
-<div id="mybooks"></div>
+    <div class="search-row">
+      <input id="search" placeholder="Search books, title or ISBN" />
+      <button id="searchBtn">Search</button>
+    </div>
+    <div id="results" style="margin-top: 12px;"></div>
+    <h3>My Books</h3>
+    <div id="mybooks"></div>
   </main>
 
+  <!-- Quizzes page -->
   <main id="page-quizzes" class="page">
     <h2>Quizzes</h2>
     <div id="quizList" class="list"></div>
   </main>
 
-  <main id="page-achievements" class="page">
+  <!-- Achievements page -->
+  <main id="page-achievements" class "page">
     <h2>Achievements</h2>
     <ul class="list" id="achList"></ul>
   </main>
 
+  <!-- Leaderboard page -->
   <main id="page-leaderboard" class="page">
     <h2>Leaderboard</h2>
     <div id="lbGlobal" class="list"></div>
   </main>
 
+  <!-- Friends page -->
   <main id="page-friends" class="page">
     <h2>Friends</h2>
     <div id="friendsList" class="list"></div>
@@ -78,6 +81,7 @@
     </div>
   </div>
 
-      <script src="script.js"></script>
-  </body>
+  <!-- Load JS once -->
+  <script src="script.js"></script>
+</body>
 </html>
