@@ -4,11 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ReadQuest</title>
-  <!-- base ensures all relative paths (script.js, style.css) resolve from /readquest/ -->
+
+  <!-- Set the base so all relative paths (style.css, script.js) resolve under /readquest/ -->
   <base href="/readquest/" />
+
+  <!-- Load your CSS once -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Top navigation -->
   <header class="topbar">
     <h1>ReadQuest</h1>
     <nav class="tabs">
@@ -30,7 +34,7 @@
       <div class="card"><div>Weekly Minutes</div><b id="stat-weekly">0</b></div>
       <div class="card"><div>Quiz Accuracy</div><b id="stat-acc">0%</b></div>
     </div>
-    <div class="empty" id="dash-empty">Start reading to see stats.</div>
+    <div id="dash-empty" class="empty">Start reading to see stats.</div>
   </main>
 
   <!-- Library page -->
@@ -40,7 +44,10 @@
       <input id="search" placeholder="Search books, title or ISBN" />
       <button id="searchBtn">Search</button>
     </div>
-    <div id="results" style="margin-top: 12px;"></div>
+
+    <!-- Container for search results -->
+    <div id="results" style="margin-top:12px;"></div>
+
     <h3>My Books</h3>
     <div id="mybooks"></div>
   </main>
@@ -52,9 +59,9 @@
   </main>
 
   <!-- Achievements page -->
-  <main id="page-achievements" class "page">
+  <main id="page-achievements" class="page">
     <h2>Achievements</h2>
-    <ul class="list" id="achList"></ul>
+    <ul id="achList" class="list"></ul>
   </main>
 
   <!-- Leaderboard page -->
@@ -81,7 +88,7 @@
     </div>
   </div>
 
-  <!-- Load JS once -->
+  <!-- Load your JS once at the very end -->
   <script src="script.js"></script>
 </body>
 </html>
