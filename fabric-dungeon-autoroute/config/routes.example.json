@@ -1,0 +1,30 @@
+{
+  "loop": false,
+  "activeRoute": "catacombs_floor_1",
+  "routes": {
+    "catacombs_floor_1": [
+      {
+        "label": "Spawn",
+        "x": 5.5,
+        "y": 70.0,
+        "z": 5.5,
+        "radius": 1.2,
+        "pauseTicks": 0,
+        "sprint": true,
+        "jump": false,
+        "lookPitch": 10.0
+      },
+      {
+        "label": "Blood Door",
+        "x": 24.5,
+        "y": 70.0,
+        "z": -18.5,
+        "radius": 1.4,
+        "pauseTicks": 0,
+        "sprint": true,
+        "jump": false,
+        "lookPitch": 10.0
+      }
+    ]
+  }
+}
